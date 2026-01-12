@@ -1,0 +1,42 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "dbc",
+      "camelcase": "Dbc",
+      "title": "Dbc",
+      "scope": "source.dbc",
+      "file-types": [
+        "dbc"
+      ],
+      "injection-regex": "^dbc$",
+      "class-name": "TreeSitterDbc"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "CANbus DBC bus decriptor file format",
+    "authors": [
+      {
+        "name": "Xander Cesari",
+        "email": "xander@merriman.industries",
+        "url": "merriman.industries"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/MerrimanInd/tree-sitter-dbc",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": false,
+    "go": false,
+    "java": false,
+    "node": false,
+    "python": false,
+    "rust": true,
+    "swift": false,
+    "zig": false
+  }
+}
