@@ -28,6 +28,7 @@
           buildInputs = [
             (pkgs.tree-sitter.override { webUISupport = true; })
             rust-bin.beta.latest.default
+            emscripten
           ];
 
           shellHook = '''';

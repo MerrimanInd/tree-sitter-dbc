@@ -26,7 +26,7 @@
     ],
     "links": {
       "repository": "https://github.com/MerrimanInd/tree-sitter-dbc",
-      "funding": ""
+      "funding": "https://github.com/MerrimanInd/tree-sitter-dbc"
     }
   },
   "bindings": {
