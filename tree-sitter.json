@@ -4,7 +4,7 @@
     {
       "name": "dbc",
       "camelcase": "Dbc",
-      "title": "Dbc",
+      "title": "CAN DBC",
       "scope": "source.dbc",
       "file-types": [
         "dbc"
@@ -16,12 +16,12 @@
   "metadata": {
     "version": "0.1.0",
     "license": "MIT",
-    "description": "CANbus DBC bus decriptor file format",
+    "description": "CANbus DBC bus descriptor file format",
     "authors": [
       {
         "name": "Xander Cesari",
         "email": "xander@merriman.industries",
-        "url": "merriman.industries"
+        "url": "https://merriman.industries/"
       }
     ],
     "links": {
@@ -30,13 +30,12 @@
     }
   },
   "bindings": {
-    "c": false,
-    "go": false,
-    "java": false,
-    "node": false,
-    "python": false,
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
     "rust": true,
-    "swift": false,
+    "swift": true,
     "zig": false
   }
 }

@@ -1,18 +1,14 @@
 {
   "name": "tree-sitter-dbc",
   "version": "0.1.0",
-  "description": "CANbus DBC bus decriptor file format",
-  "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/merrimanind/tree-sitter-dbc.git"
-  },
-  "funding": "",
+  "description": "CANbus DBC bus descriptor file format",
+  "repository": "https://github.com/merrimanind/tree-sitter-dbc",
+  "funding": "https://github.com/MerrimanInd/tree-sitter-dbc",
   "license": "MIT",
   "author": {
     "name": "Xander Cesari",
     "email": "xander@merriman.industries",
-    "url": "merriman.industries"
+    "url": "https://merriman.industries/"
   },
   "main": "bindings/node",
   "types": "bindings/node",
@@ -38,11 +34,11 @@
   },
   "devDependencies": {
     "prebuildify": "^6.0.1",
-    "tree-sitter": "^0.25.0",
-    "tree-sitter-cli": "^0.27.0"
+    "tree-sitter": "^0.22.4",
+    "tree-sitter-cli": "^0.25.10"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.25.0"
+    "tree-sitter": "^0.22.4"
   },
   "peerDependenciesMeta": {
     "tree-sitter": {

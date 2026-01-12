@@ -1,5 +1,5 @@
 /**
- * @file CANbus DBC bus decriptor file format
+ * @file CANbus DBC bus descriptor file format
  * @author Xander Cesari <xander@merriman.industries>
  * @license MIT
  */
