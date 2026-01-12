@@ -1,8 +1,8 @@
 {
-  description = "A can-dbc LSP written in Rust";
+  description = "A tree-sitter grammar for CAN DBC files";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     rust-overlay.url = "github:oxalica/rust-overlay";
     flake-utils.url = "github:numtide/flake-utils";
   };
@@ -26,10 +26,7 @@
       {
         devShells.default = mkShell {
           buildInputs = [
-            # zsh
-            # pnpm
-            nodejs_24
-            tree-sitter
+            (pkgs.tree-sitter.override { webUISupport = true; })
             rust-bin.beta.latest.default
           ];
 
