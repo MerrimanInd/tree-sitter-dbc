@@ -1,0 +1,1013 @@
+// Test suite for tree-sitter-dbc
+// Place this in test/corpus/dbc.txt
+
+==================
+Minimal DBC File
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_:
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes))
+
+==================
+Version with String
+==================
+
+VERSION "1.0"
+
+NS_ :
+
+BS_:
+
+BU_:
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes))
+
+==================
+New Symbols Declaration
+==================
+
+VERSION ""
+
+NS_ :
+  NS_DESC_
+  CM_
+  BA_DEF_
+  BA_
+  VAL_
+  BO_TX_BU_
+  SG_MUL_VAL_
+
+BS_:
+
+BU_:
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes))
+
+==================
+Bit Timing with Values
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_: 500000: 1, 2
+
+BU_:
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing
+    (baudrate
+      (unsigned_integer))
+    (BTR1
+      (unsigned_integer))
+    (BTR2
+      (unsigned_integer)))
+  (nodes))
+
+==================
+Node Definitions
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: Engine Gateway Transmission
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes
+    (node_name (dbc_identifier))
+    (node_name (dbc_identifier))
+    (node_name (dbc_identifier))))
+
+==================
+Value Table
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_:
+
+VAL_TABLE_ GearStatus 0 "Neutral" 1 "First" 2 "Second" 3 "Third" ;
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes)
+  (value_tables
+    (value_table
+      (value_table_name
+        (dbc_identifier))
+      (value_description
+        (unsigned_integer)
+        (char_string))
+      (value_description
+        (unsigned_integer)
+        (char_string))
+      (value_description
+        (unsigned_integer)
+        (char_string))
+      (value_description
+        (unsigned_integer)
+        (char_string)))))
+
+==================
+Simple Message with Signal
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: Engine Gateway
+
+BO_ 100 EngineData: 8 Engine
+ SG_ EngSpeed : 0|16@1+ (1,0) [0|8000] "rpm" Gateway
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes
+    (node_name (dbc_identifier))
+    (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver (node_name (dbc_identifier)))))))
+
+==================
+Signal with Negative Values
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: Sensor
+
+BO_ 200 TempData: 4 Sensor
+ SG_ Temperature : 0|16@1- (0.1,-40) [-40|125] "degC" Vector__XXX
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes
+    (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver)))))
+
+==================
+Signal with Multiple Receivers
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: ECU1 ECU2 ECU3
+
+BO_ 300 BroadcastMsg: 8 ECU1
+ SG_ SharedSignal : 0|8@1+ (1,0) [0|255] "" ECU2, ECU3
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes
+    (node_name (dbc_identifier))
+    (node_name (dbc_identifier))
+    (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver (node_name (dbc_identifier)))
+        (receiver (node_name (dbc_identifier)))))))
+
+==================
+Multiplexed Signals
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: Node1
+
+BO_ 400 MuxMsg: 8 Node1
+ SG_ MuxSwitch M : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Signal1 m0 : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Signal2 m1 : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes
+    (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))
+      (signal
+        (signal_name (dbc_identifier))
+        (multiplexer_indicator)
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver ))
+      (signal
+        (signal_name (dbc_identifier))
+        (multiplexer_indicator
+          (multiplexer_switch_value (unsigned_integer)))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver ))
+      (signal
+        (signal_name (dbc_identifier))
+        (multiplexer_indicator
+          (multiplexer_switch_value (unsigned_integer)))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver ))
+      )))
+
+==================
+Extended Multiplexing
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: Node1
+
+BO_ 500 ExtMuxMsg: 8 Node1
+ SG_ Mux1 M : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Mux2 m0M : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Signal1 m0 : 4|4@1+ (1,0) [0|15] "" Vector__XXX
+
+SG_MUL_VAL_ 500 Signal1 Mux2 0-1 3-3 ;
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes
+    (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))
+      (signal
+        (signal_name (dbc_identifier))
+        (multiplexer_indicator)
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver ))
+      (signal
+        (signal_name (dbc_identifier))
+        (multiplexer_indicator
+          (multiplexer_switch_value (unsigned_integer)))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver ))
+      (signal
+        (signal_name (dbc_identifier))
+        (multiplexer_indicator
+          (multiplexer_switch_value (unsigned_integer)))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver ))
+      ))
+  (extended_multiplexing
+    (multiplexed_signal
+      (message_id
+        (unsigned_integer))
+      (multiplexed_signal_name (dbc_identifier))
+      (multiplexor_switch_name (dbc_identifier))
+      (multiplexor_value_ranges
+        (multiplexor_value_range
+          (unsigned_integer)
+          (unsigned_integer))
+        (multiplexor_value_range
+          (unsigned_integer)
+          (unsigned_integer))))))
+
+==================
+Message Transmitters
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: ECU1 ECU2 ECU3
+
+BO_ 600 SharedMsg: 8 ECU1
+
+BO_TX_BU_ 600 : ECU1 ECU2 ECU3 ;
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes
+    (node_name (dbc_identifier))
+    (node_name (dbc_identifier))
+    (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))))
+  (message_transmitters
+    (message_transmitter
+      (message_id (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))
+      (transmitter (node_name (dbc_identifier)))
+      (transmitter (node_name (dbc_identifier))))))
+
+
+==================
+Comments
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: Engine
+
+BO_ 100 EngineData: 8 Engine
+
+CM_ "Global comment for the network";
+CM_ BU_ Engine "Engine control unit";
+CM_ BO_ 100 "Engine data message";
+CM_ SG_ 100 EngSpeed "Engine speed in RPM";
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes
+    (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))))
+  (comments
+    (comment (char_string))
+    (comment
+      (node_name (dbc_identifier))
+      (char_string))
+    (comment
+      (message_id (unsigned_integer))
+      (char_string))
+    (comment
+      (message_id (unsigned_integer))
+      (signal_name (dbc_identifier))
+      (char_string))))
+
+==================
+Attribute Definitions
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_:
+
+BA_DEF_ "DBName" STRING ;
+BA_DEF_ BU_ "NodeLayerModules" STRING ;
+BA_DEF_ BO_ "GenMsgCycleTime" INT 0 10000 ;
+BA_DEF_ SG_ "GenSigStartValue" FLOAT -3.4E38 3.4E38 ;
+BA_DEF_ "BusType" ENUM "CAN","CANFD" ;
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes)
+  (attribute_definitions
+    (attribute_definition
+      (attribute_name (dbc_identifier))
+      (attribute_value_type))
+    (attribute_definition
+      (object_type)
+      (attribute_name (dbc_identifier))
+      (attribute_value_type))
+    (attribute_definition
+      (object_type)
+      (attribute_name (dbc_identifier))
+      (attribute_value_type (signed_integer) (signed_integer)))
+    (attribute_definition
+      (object_type)
+      (attribute_name (dbc_identifier))
+      (attribute_value_type (double) (double)))
+    (attribute_definition
+      (attribute_name (dbc_identifier))
+      (attribute_value_type (char_string) (char_string)))))
+
+==================
+Attribute Defaults
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_:
+
+BA_DEF_ "DBName" STRING ;
+BA_DEF_ BO_ "GenMsgCycleTime" INT 0 10000 ;
+
+BA_DEF_DEF_ "DBName" "MyDatabase" ;
+BA_DEF_DEF_ "GenMsgCycleTime" 100 ;
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes)
+  (attribute_definitions
+    (attribute_definition
+      (attribute_name (dbc_identifier))
+      (attribute_value_type))
+    (attribute_definition
+      (object_type)
+      (attribute_name (dbc_identifier))
+      (attribute_value_type (signed_integer) (signed_integer))))
+  (attribute_defaults
+    (attribute_default
+      (attribute_name (dbc_identifier))
+      (attribute_value (char_string)))
+    (attribute_default
+      (attribute_name (dbc_identifier))
+      (attribute_value (unsigned_integer)))))
+
+==================
+Attribute Values
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: Engine
+
+BO_ 100 EngineData: 8 Engine
+ SG_ EngSpeed : 0|16@1+ (1,0) [0|8000] "rpm" Vector__XXX
+
+BA_ "DBName" "PowertrainDB";
+BA_ "NodeLayerModules" BU_ Engine "CANoeEmu.Engine.dll";
+BA_ "GenMsgCycleTime" BO_ 100 50;
+BA_ "GenSigStartValue" SG_ 100 EngSpeed 0;
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver))))
+  (attribute_values
+    (attribute_value_for_object
+      (attribute_name (dbc_identifier))
+      (attribute_value (char_string)))
+    (attribute_value_for_object
+      (attribute_name (dbc_identifier))
+      (node_name (dbc_identifier))
+      (attribute_value (char_string)))
+    (attribute_value_for_object
+      (attribute_name (dbc_identifier))
+      (message_id (unsigned_integer))
+      (attribute_value (unsigned_integer)))
+    (attribute_value_for_object
+      (attribute_name (dbc_identifier))
+      (message_id (unsigned_integer))
+      (signal_name (dbc_identifier))
+      (attribute_value (unsigned_integer)))))
+
+==================
+Signal Value Descriptions
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: ECU
+
+BO_ 200 StatusMsg: 8 ECU
+ SG_ GearStatus : 0|8@1+ (1,0) [0|5] "" Vector__XXX
+ SG_ DoorStatus : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+
+VAL_ 200 GearStatus 0 "Park" 1 "Reverse" 2 "Neutral" 3 "Drive" 4 "Sport" ;
+VAL_ 200 DoorStatus 0 "Closed" 1 "Open" ;
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver))))
+  (value_descriptions
+    (value_descriptions_for_signal
+      (message_id (unsigned_integer))
+      (signal_name (dbc_identifier))
+      (value_description (unsigned_integer) (char_string))
+      (value_description (unsigned_integer) (char_string))
+      (value_description (unsigned_integer) (char_string))
+      (value_description (unsigned_integer) (char_string))
+      (value_description (unsigned_integer) (char_string)))
+    (value_descriptions_for_signal
+      (message_id (unsigned_integer))
+      (signal_name (dbc_identifier))
+      (value_description (unsigned_integer) (char_string))
+      (value_description (unsigned_integer) (char_string)))))
+
+==================
+Environment Variables
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: TestNode
+
+EV_ MyEnvVar : 0 [0|100] "" 50 0 DUMMY_NODE_VECTOR0 TestNode ;
+EV_ FloatVar : 1 [-100.5|100.5] "unit" 0 0 DUMMY_NODE_VECTOR1 Vector__XXX ;
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes (node_name (dbc_identifier)))
+  (environment_variables
+    (environment_variable
+      (env_var_name (dbc_identifier))
+      (env_var_type)
+      (minimum (double))
+      (maximum (double))
+      (unit (char_string))
+      (initial_value (double))
+      (ev_id (unsigned_integer))
+      (access_type)
+      (access_node (node_name (dbc_identifier))))
+    (environment_variable
+      (env_var_name (dbc_identifier))
+      (env_var_type)
+      (minimum (double))
+      (maximum (double))
+      (unit (char_string))
+      (initial_value (double))
+      (ev_id (unsigned_integer))
+      (access_type)
+      (access_node
+        (node_name (dbc_identifier))))))
+
+==================
+Signal Extended Value Type
+==================
+
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: Node1
+
+BO_ 700 FloatMsg: 8 Node1
+ SG_ FloatSignal : 0|32@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ DoubleSignal : 32|32@1+ (1,0) [0|0] "" Vector__XXX
+
+SIG_VALTYPE_ 700 FloatSignal 1 ;
+SIG_VALTYPE_ 700 DoubleSignal 2 ;
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver))))
+  (signal_extended_value_type_lists
+    (signal_extended_value_type_list
+      (message_id (unsigned_integer))
+      (signal_name (dbc_identifier))
+      (signal_extended_value_type))
+    (signal_extended_value_type_list
+      (message_id (unsigned_integer))
+      (signal_name (dbc_identifier))
+      (signal_extended_value_type))))
+
+==================
+Complete Example from Spec
+==================
+
+VERSION ""
+
+NS_ :
+ NS_DESC_
+ CM_
+ BA_DEF_
+ BA_
+ VAL_
+ CAT_DEF_
+ CAT_
+ FILTER
+ BA_DEF_DEF_
+ EV_DATA_
+ ENVVAR_DATA_
+ SGTYPE_
+ SGTYPE_VAL_
+ BA_DEF_SGTYPE_
+ BA_SGTYPE_
+ SIG_TYPE_REF_
+ VAL_TABLE_
+ SIG_GROUP_
+ SIG_VALTYPE_
+ SIGTYPE_VALTYPE_
+ BO_TX_BU_
+ BA_DEF_REL_
+ BA_REL_
+ BA_DEF_DEF_REL_
+ BU_SG_REL_
+ BU_EV_REL_
+ BU_BO_REL_
+
+BS_:
+
+BU_: Engine Gateway
+
+BO_ 100 EngineData: 8 Engine
+ SG_ PetrolLevel : 24|8@1+ (1,0) [0|255] "l" Gateway
+ SG_ EngPower : 48|16@1+ (0.01,0) [0|150] "kW" Gateway
+ SG_ EngForce : 32|16@1+ (1,0) [0|0] "N" Gateway
+ SG_ IdleRunning : 23|1@1+ (1,0) [0|0] "" Gateway
+ SG_ EngTemp : 16|7@1+ (2,-50) [-50|150] "degC" Gateway
+ SG_ EngSpeed : 0|16@1+ (1,0) [0|8000] "rpm" Gateway
+
+CM_ "CAN communication matrix for power train electronics";
+
+VAL_ 100 IdleRunning 0 "Running" 1 "Idle" ;
+
+---
+
+(dbc_file
+  (version (char_string))
+  (new_symbols)
+  (bit_timing)
+  (nodes
+    (node_name (dbc_identifier))
+    (node_name (dbc_identifier)))
+  (messages
+    (message
+      (message_id (unsigned_integer))
+      (message_name (dbc_identifier))
+      (message_size (unsigned_integer))
+      (transmitter (node_name (dbc_identifier)))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver (node_name (dbc_identifier))))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver (node_name (dbc_identifier))))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver (node_name (dbc_identifier))))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver (node_name (dbc_identifier))))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver (node_name (dbc_identifier))))
+      (signal
+        (signal_name (dbc_identifier))
+        (start_bit (unsigned_integer))
+        (signal_size (unsigned_integer))
+        (byte_order)
+        (value_type)
+        (factor (double))
+        (offset (double))
+        (minimum (double))
+        (maximum (double))
+        (unit (char_string))
+        (receiver (node_name (dbc_identifier))))))
+  (comments
+    (comment (char_string)))
+  (value_descriptions
+    (value_descriptions_for_signal
+      (message_id (unsigned_integer))
+      (signal_name (dbc_identifier))
+      (value_description (unsigned_integer) (char_string))
+      (value_description (unsigned_integer) (char_string)))))

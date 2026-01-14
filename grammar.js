@@ -64,7 +64,7 @@ export default grammar({
       optional($.attribute_values),
       optional($.value_descriptions),
       optional($.signal_groups),
-      optional($.signal_extended_value_type_list),
+      optional($.signal_extended_value_type_lists),
       optional($.extended_multiplexing)
     ),
 
@@ -232,7 +232,15 @@ export default grammar({
     /** Specification:
       multiplexer_indicator = ' ' | [m multiplexer_switch_value] [M] ;
     **/
-    multiplexer_indicator: $ => choice('M', /m\d+/),
+    // Note: the emptry string case is handled by the optional() call in the signal parser
+    multiplexer_indicator: $ => choice(
+      seq('m', $.multiplexer_switch_value, 'M'),
+      'M',
+      seq('m', $.multiplexer_switch_value)
+    ),
+
+    // Note: there is no specification for the multiplexer_switch_value. This is referred to in multiplexing but is not defined. I am assuming it maps to an unsigned_integer, as multiplexers are usually treated as simple enumerations without an engineering conversion that would make them signed or floats.
+    multiplexer_switch_value: $ => $.unsigned_integer,
 
     /** Specification:
       start_bit = unsigned_integer ;
@@ -292,6 +300,9 @@ export default grammar({
 
     signal_extended_value_type: $ => /[0123]/,
 
+    // Note: strictly speaking the specification only allows a single signal_extended_value_type_list item that sets only one signal type. I believe this is an oversight due to this feature being essentially deprecated. I've added an undocumented parse object to iterate through a series of SIG_VALTYPE_ declarations. This aligns with the rest of the top-level declarations and makes the parser more robust. If this can be confirmed to be in error please reach out to me or put in a PR to remove it.
+    signal_extended_value_type_lists: $ => repeat1($.signal_extended_value_type_list),
+
 
     // 8.3 Definition of Message Transmitters    
     /** Specification:
@@ -328,7 +339,7 @@ export default grammar({
     environment_variable: $ => seq(
       'EV_', $.env_var_name, ':', $.env_var_type,
       '[', $.minimum, '|', $.maximum, ']',
-      $.char_string, $.initial_value, $.ev_id, $.access_type, $.access_node,
+      $.unit, $.initial_value, $.ev_id, $.access_type, $.access_node,
       repeat(seq(',', $.access_node)), ';',
     ),
 

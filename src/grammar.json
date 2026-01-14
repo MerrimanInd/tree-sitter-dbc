@@ -170,7 +170,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "signal_extended_value_type_list"
+              "name": "signal_extended_value_type_lists"
             },
             {
               "type": "BLANK"
@@ -672,14 +672,44 @@
       "type": "CHOICE",
       "members": [
         {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "m"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "multiplexer_switch_value"
+            },
+            {
+              "type": "STRING",
+              "value": "M"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": "M"
         },
         {
-          "type": "PATTERN",
-          "value": "m\\d+"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "m"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "multiplexer_switch_value"
+            }
+          ]
         }
       ]
+    },
+    "multiplexer_switch_value": {
+      "type": "SYMBOL",
+      "name": "unsigned_integer"
     },
     "start_bit": {
       "type": "SYMBOL",
@@ -758,6 +788,13 @@
     "signal_extended_value_type": {
       "type": "PATTERN",
       "value": "[0123]"
+    },
+    "signal_extended_value_type_lists": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "signal_extended_value_type_list"
+      }
     },
     "message_transmitters": {
       "type": "REPEAT1",
@@ -886,7 +923,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "char_string"
+          "name": "unit"
         },
         {
           "type": "SYMBOL",
