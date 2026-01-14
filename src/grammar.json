@@ -22,104 +22,194 @@
           "name": "nodes"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "value_table"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "value_tables"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "message"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "messages"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "message_transmitter"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "message_transmitters"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "environment_variable"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "environment_variables"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "environment_variable_data"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "environment_variables_data"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "signal_type"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "signal_types"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "comment"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "comments"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "attribute_definition"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_definitions"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "attribute_default"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_defaults"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "attribute_values"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_values"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "value_description"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "value_descriptions"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "signal_group"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "signal_groups"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "signal_extended_value_type"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "signal_extended_value_type_list"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "extended_multiplexing"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "extended_multiplexing"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
+    },
+    "dbc_identifier": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_][a-zA-Z0-9_]{0,31}"
+    },
+    "unsigned_integer": {
+      "type": "PATTERN",
+      "value": "\\d+"
+    },
+    "signed_integer": {
+      "type": "PATTERN",
+      "value": "-?\\d+"
+    },
+    "double": {
+      "type": "PATTERN",
+      "value": "-?\\d+(\\.\\d+)?([eE][+-]?\\d+)?"
+    },
+    "char_string": {
+      "type": "PATTERN",
+      "value": "\"([^\"\\\\\\r\\n]*)\""
     },
     "version": {
       "type": "SEQ",
@@ -282,7 +372,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "unsigned_integer"
+                  "name": "baudrate"
                 },
                 {
                   "type": "STRING",
@@ -290,7 +380,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "unsigned_integer"
+                  "name": "BTR1"
                 },
                 {
                   "type": "STRING",
@@ -298,7 +388,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "unsigned_integer"
+                  "name": "BTR2"
                 }
               ]
             },
@@ -308,6 +398,18 @@
           ]
         }
       ]
+    },
+    "baudrate": {
+      "type": "SYMBOL",
+      "name": "unsigned_integer"
+    },
+    "BTR1": {
+      "type": "SYMBOL",
+      "name": "unsigned_integer"
+    },
+    "BTR2": {
+      "type": "SYMBOL",
+      "name": "unsigned_integer"
     },
     "nodes": {
       "type": "SEQ",
@@ -329,6 +431,13 @@
       "type": "SYMBOL",
       "name": "dbc_identifier"
     },
+    "value_tables": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "value_table"
+      }
+    },
     "value_table": {
       "type": "SEQ",
       "members": [
@@ -338,13 +447,13 @@
         },
         {
           "type": "SYMBOL",
-          "name": "dbc_identifier"
+          "name": "value_table_name"
         },
         {
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "value_description_pair"
+            "name": "value_description"
           }
         },
         {
@@ -352,6 +461,30 @@
           "value": ";"
         }
       ]
+    },
+    "value_table_name": {
+      "type": "SYMBOL",
+      "name": "dbc_identifier"
+    },
+    "value_description": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "unsigned_integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "char_string"
+        }
+      ]
+    },
+    "messages": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "message"
+      }
     },
     "message": {
       "type": "SEQ",
@@ -507,7 +640,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "char_string"
+          "name": "unit"
         },
         {
           "type": "SYMBOL",
@@ -580,6 +713,10 @@
       "type": "SYMBOL",
       "name": "double"
     },
+    "unit": {
+      "type": "SYMBOL",
+      "name": "char_string"
+    },
     "receiver": {
       "type": "CHOICE",
       "members": [
@@ -592,6 +729,121 @@
           "value": "Vector__XXX"
         }
       ]
+    },
+    "signal_extended_value_type_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "SIG_VALTYPE_"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "message_id"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "signal_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "signal_extended_value_type"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "signal_extended_value_type": {
+      "type": "PATTERN",
+      "value": "[0123]"
+    },
+    "message_transmitters": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "message_transmitter"
+      }
+    },
+    "message_transmitter": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "BO_TX_BU_"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "message_id"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "transmitter"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "value_descriptions": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "value_descriptions_for_signal"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "value_descriptions_for_env_var"
+          }
+        ]
+      }
+    },
+    "value_descriptions_for_signal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "VAL_"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "message_id"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "signal_name"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "value_description"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "environment_variables": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "environment_variable"
+      }
     },
     "environment_variable": {
       "type": "SEQ",
@@ -691,8 +943,41 @@
       "name": "unsigned_integer"
     },
     "access_type": {
-      "type": "PATTERN",
-      "value": "DUMMY_NODE_VECTOR\\d+"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "DUMMY_NODE_VECTOR0"
+        },
+        {
+          "type": "STRING",
+          "value": "DUMMY_NODE_VECTOR1"
+        },
+        {
+          "type": "STRING",
+          "value": "DUMMY_NODE_VECTOR2"
+        },
+        {
+          "type": "STRING",
+          "value": "DUMMY_NODE_VECTOR3"
+        },
+        {
+          "type": "STRING",
+          "value": "DUMMY_NODE_VECTOR8000"
+        },
+        {
+          "type": "STRING",
+          "value": "DUMMY_NODE_VECTOR8001"
+        },
+        {
+          "type": "STRING",
+          "value": "DUMMY_NODE_VECTOR8002"
+        },
+        {
+          "type": "STRING",
+          "value": "DUMMY_NODE_VECTOR8003"
+        }
+      ]
     },
     "access_node": {
       "type": "CHOICE",
@@ -706,6 +991,271 @@
           "value": "VECTOR__XXX"
         }
       ]
+    },
+    "environment_variables_data": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "environment_variable_data"
+      }
+    },
+    "environment_variable_data": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ENVVAR_DATA_"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "env_var_name"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "data_size"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "data_size": {
+      "type": "SYMBOL",
+      "name": "unsigned_integer"
+    },
+    "value_descriptions_for_env_var": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "VAL_"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "env_var_name"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "value_description"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "signal_types": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "signal_type"
+      }
+    },
+    "signal_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "SGTYPE_"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "signal_type_name"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "signal_size"
+        },
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "byte_order"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "value_type"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "factor"
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "SYMBOL",
+          "name": "offset"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "minimum"
+        },
+        {
+          "type": "STRING",
+          "value": "|"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "maximum"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unit"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "default_value"
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "value_table_name"
+          },
+          "named": true,
+          "value": "value_table"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "signal_type_name": {
+      "type": "SYMBOL",
+      "name": "dbc_identifier"
+    },
+    "default_value": {
+      "type": "SYMBOL",
+      "name": "double"
+    },
+    "signal_type_refs": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "signal_type_ref"
+      }
+    },
+    "signal_type_ref": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "SGTYPE_"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "message_id"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "signal_name"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "signal_type_name"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "signal_groups": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "SIG_GROUP_"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "message_id"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "signal_group_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repetitions"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "signal_name"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "signal_group_name": {
+      "type": "SYMBOL",
+      "name": "dbc_identifier"
+    },
+    "repetitions": {
+      "type": "SYMBOL",
+      "name": "unsigned_integer"
+    },
+    "comments": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "comment"
+      }
     },
     "comment": {
       "type": "SEQ",
@@ -801,6 +1351,13 @@
         }
       ]
     },
+    "attribute_definitions": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "attribute_definition"
+      }
+    },
     "attribute_definition": {
       "type": "SEQ",
       "members": [
@@ -812,25 +1369,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "BU_"
-                },
-                {
-                  "type": "STRING",
-                  "value": "BO_"
-                },
-                {
-                  "type": "STRING",
-                  "value": "SG_"
-                },
-                {
-                  "type": "STRING",
-                  "value": "EV_"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "object_type"
             },
             {
               "type": "BLANK"
@@ -839,7 +1379,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "char_string"
+          "name": "attribute_name"
         },
         {
           "type": "SYMBOL",
@@ -851,233 +1391,41 @@
         }
       ]
     },
-    "attribute_default": {
-      "type": "PREC",
-      "value": 2,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "BA_DEF_DEF_"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "char_string"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "attribute_value"
-          },
-          {
-            "type": "STRING",
-            "value": ";"
-          }
-        ]
-      }
-    },
-    "attribute_value": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_attr_val"
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "BU_"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "node_name"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_attr_val"
-                }
-              ]
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "BO_"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "message_id"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_attr_val"
-                }
-              ]
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "SG_"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "message_id"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "signal_name"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_attr_val"
-                }
-              ]
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "EV_"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "env_var_name"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_attr_val"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "attribute_values": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "BA_"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "char_string"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_attr_val"
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "BU_"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "node_name"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_attr_val"
-                }
-              ]
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "BO_"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "message_id"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_attr_val"
-                }
-              ]
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "SG_"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "message_id"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "signal_name"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_attr_val"
-                }
-              ]
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "EV_"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "env_var_name"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_attr_val"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": ";"
-        }
-      ]
-    },
-    "_attr_val": {
+    "object_type": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "unsigned_integer"
+          "type": "STRING",
+          "value": "BU_"
+        },
+        {
+          "type": "STRING",
+          "value": "BO_"
+        },
+        {
+          "type": "STRING",
+          "value": "SG_"
+        },
+        {
+          "type": "STRING",
+          "value": "EV_"
+        }
+      ]
+    },
+    "attribute_name": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\""
         },
         {
           "type": "SYMBOL",
-          "name": "signed_integer"
+          "name": "dbc_identifier"
         },
         {
-          "type": "SYMBOL",
-          "name": "double"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "char_string"
+          "type": "STRING",
+          "value": "\""
         }
       ]
     },
@@ -1183,32 +1531,52 @@
         }
       ]
     },
-    "dbc_identifier": {
-      "type": "PATTERN",
-      "value": "[a-zA-Z_][a-zA-Z0-9_]{0,31}"
+    "attribute_defaults": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "attribute_default"
+      }
     },
-    "unsigned_integer": {
-      "type": "PATTERN",
-      "value": "\\d+"
+    "attribute_default": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "BA_DEF_DEF_"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "attribute_name"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "attribute_value"
+          },
+          {
+            "type": "STRING",
+            "value": ";"
+          }
+        ]
+      }
     },
-    "signed_integer": {
-      "type": "PATTERN",
-      "value": "-?\\d+"
-    },
-    "double": {
-      "type": "PATTERN",
-      "value": "-?\\d+(\\.\\d+)?([eE][+-]?\\d+)?"
-    },
-    "char_string": {
-      "type": "PATTERN",
-      "value": "\"([^\"\\\\\\r\\n]*)\""
-    },
-    "value_description_pair": {
-      "type": "SEQ",
+    "attribute_value": {
+      "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
           "name": "unsigned_integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "signed_integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "double"
         },
         {
           "type": "SYMBOL",
@@ -1216,84 +1584,72 @@
         }
       ]
     },
-    "message_transmitter": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "BO_TX_BU_"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "message_id"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "transmitter"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": ";"
-        }
-      ]
+    "attribute_values": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "attribute_value_for_object"
+      }
     },
-    "signal_type": {
+    "attribute_value_for_object": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "SGTYPE_"
+          "value": "BA_"
         },
         {
           "type": "SYMBOL",
-          "name": "dbc_identifier"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "signal_size"
-        },
-        {
-          "type": "STRING",
-          "value": "@"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "byte_order"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "value_type"
-        },
-        {
-          "type": "STRING",
-          "value": ";"
-        }
-      ]
-    },
-    "value_description": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "VAL_"
+          "name": "attribute_name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
+              "type": "SYMBOL",
+              "name": "attribute_value"
+            },
+            {
               "type": "SEQ",
               "members": [
+                {
+                  "type": "STRING",
+                  "value": "BU_"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "node_name"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "attribute_value"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "BO_"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "message_id"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "attribute_value"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "SG_"
+                },
                 {
                   "type": "SYMBOL",
                   "name": "message_id"
@@ -1301,82 +1657,31 @@
                 {
                   "type": "SYMBOL",
                   "name": "signal_name"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "attribute_value"
                 }
               ]
             },
             {
-              "type": "SYMBOL",
-              "name": "env_var_name"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "EV_"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "env_var_name"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "attribute_value"
+                }
+              ]
             }
           ]
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "value_description_pair"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": ";"
-        }
-      ]
-    },
-    "signal_group": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "SIG_GROUP_"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "message_id"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dbc_identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "unsigned_integer"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "signal_name"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": ";"
-        }
-      ]
-    },
-    "signal_extended_value_type": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "SIG_VALTYPE_"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "message_id"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "signal_name"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[0123]"
         },
         {
           "type": "STRING",
@@ -1385,6 +1690,13 @@
       ]
     },
     "extended_multiplexing": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "multiplexed_signal"
+      }
+    },
+    "multiplexed_signal": {
       "type": "SEQ",
       "members": [
         {
@@ -1397,15 +1709,15 @@
         },
         {
           "type": "SYMBOL",
-          "name": "signal_name"
+          "name": "multiplexed_signal_name"
         },
         {
           "type": "SYMBOL",
-          "name": "signal_name"
+          "name": "multiplexor_switch_name"
         },
         {
           "type": "SYMBOL",
-          "name": "value_ranges"
+          "name": "multiplexor_value_ranges"
         },
         {
           "type": "STRING",
@@ -1413,32 +1725,22 @@
         }
       ]
     },
-    "value_ranges": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "value_range"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ","
-              },
-              {
-                "type": "SYMBOL",
-                "name": "value_range"
-              }
-            ]
-          }
-        }
-      ]
+    "multiplexed_signal_name": {
+      "type": "SYMBOL",
+      "name": "dbc_identifier"
     },
-    "value_range": {
+    "multiplexor_switch_name": {
+      "type": "SYMBOL",
+      "name": "dbc_identifier"
+    },
+    "multiplexor_value_ranges": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "multiplexor_value_range"
+      }
+    },
+    "multiplexor_value_range": {
       "type": "SEQ",
       "members": [
         {
@@ -1452,31 +1754,6 @@
         {
           "type": "SYMBOL",
           "name": "unsigned_integer"
-        }
-      ]
-    },
-    "environment_variable_data": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "ENVVAR_DATA_"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "env_var_name"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "unsigned_integer"
-        },
-        {
-          "type": "STRING",
-          "value": ";"
         }
       ]
     }

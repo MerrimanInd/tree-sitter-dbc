@@ -1,5 +1,35 @@
 [
   {
+    "type": "BTR1",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "unsigned_integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BTR2",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "unsigned_integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "access_node",
     "named": true,
     "fields": {},
@@ -15,6 +45,11 @@
     }
   },
   {
+    "type": "access_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "attribute_default",
     "named": true,
     "fields": {},
@@ -23,11 +58,26 @@
       "required": true,
       "types": [
         {
-          "type": "attribute_value",
+          "type": "attribute_name",
           "named": true
         },
         {
-          "type": "char_string",
+          "type": "attribute_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_defaults",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_default",
           "named": true
         }
       ]
@@ -42,11 +92,45 @@
       "required": true,
       "types": [
         {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
           "type": "attribute_value_type",
           "named": true
         },
         {
-          "type": "char_string",
+          "type": "object_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_definitions",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dbc_identifier",
           "named": true
         }
       ]
@@ -57,7 +141,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -66,6 +150,33 @@
         },
         {
           "type": "double",
+          "named": true
+        },
+        {
+          "type": "signed_integer",
+          "named": true
+        },
+        {
+          "type": "unsigned_integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_value_for_object",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "attribute_value",
           "named": true
         },
         {
@@ -82,14 +193,6 @@
         },
         {
           "type": "signal_name",
-          "named": true
-        },
-        {
-          "type": "signed_integer",
-          "named": true
-        },
-        {
-          "type": "unsigned_integer",
           "named": true
         }
       ]
@@ -127,33 +230,20 @@
       "required": true,
       "types": [
         {
-          "type": "char_string",
+          "type": "attribute_value_for_object",
           "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "env_var_name",
-          "named": true
-        },
-        {
-          "type": "message_id",
-          "named": true
-        },
-        {
-          "type": "node_name",
-          "named": true
-        },
-        {
-          "type": "signal_name",
-          "named": true
-        },
-        {
-          "type": "signed_integer",
-          "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "baudrate",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
         {
           "type": "unsigned_integer",
           "named": true
@@ -170,7 +260,15 @@
       "required": false,
       "types": [
         {
-          "type": "unsigned_integer",
+          "type": "BTR1",
+          "named": true
+        },
+        {
+          "type": "BTR2",
+          "named": true
+        },
+        {
+          "type": "baudrate",
           "named": true
         }
       ]
@@ -208,6 +306,36 @@
     }
   },
   {
+    "type": "comments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "data_size",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "unsigned_integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dbc_file",
     "named": true,
     "root": true,
@@ -217,11 +345,11 @@
       "required": true,
       "types": [
         {
-          "type": "attribute_default",
+          "type": "attribute_defaults",
           "named": true
         },
         {
-          "type": "attribute_definition",
+          "type": "attribute_definitions",
           "named": true
         },
         {
@@ -233,15 +361,15 @@
           "named": true
         },
         {
-          "type": "comment",
+          "type": "comments",
           "named": true
         },
         {
-          "type": "environment_variable",
+          "type": "environment_variables",
           "named": true
         },
         {
-          "type": "environment_variable_data",
+          "type": "environment_variables_data",
           "named": true
         },
         {
@@ -249,11 +377,11 @@
           "named": true
         },
         {
-          "type": "message",
+          "type": "message_transmitters",
           "named": true
         },
         {
-          "type": "message_transmitter",
+          "type": "messages",
           "named": true
         },
         {
@@ -265,27 +393,42 @@
           "named": true
         },
         {
-          "type": "signal_extended_value_type",
+          "type": "signal_extended_value_type_list",
           "named": true
         },
         {
-          "type": "signal_group",
+          "type": "signal_groups",
           "named": true
         },
         {
-          "type": "signal_type",
+          "type": "signal_types",
           "named": true
         },
         {
-          "type": "value_description",
+          "type": "value_descriptions",
           "named": true
         },
         {
-          "type": "value_table",
+          "type": "value_tables",
           "named": true
         },
         {
           "type": "version",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "default_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "double",
           "named": true
         }
       ]
@@ -362,11 +505,41 @@
       "required": true,
       "types": [
         {
-          "type": "env_var_name",
+          "type": "data_size",
           "named": true
         },
         {
-          "type": "unsigned_integer",
+          "type": "env_var_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "environment_variables",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "environment_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "environment_variables_data",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "environment_variable_data",
           "named": true
         }
       ]
@@ -396,15 +569,7 @@
       "required": true,
       "types": [
         {
-          "type": "message_id",
-          "named": true
-        },
-        {
-          "type": "signal_name",
-          "named": true
-        },
-        {
-          "type": "value_ranges",
+          "type": "multiplexed_signal",
           "named": true
         }
       ]
@@ -551,6 +716,36 @@
     }
   },
   {
+    "type": "message_transmitters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "message_transmitter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "messages",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "message",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "minimum",
     "named": true,
     "fields": {},
@@ -566,9 +761,96 @@
     }
   },
   {
+    "type": "multiplexed_signal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "message_id",
+          "named": true
+        },
+        {
+          "type": "multiplexed_signal_name",
+          "named": true
+        },
+        {
+          "type": "multiplexor_switch_name",
+          "named": true
+        },
+        {
+          "type": "multiplexor_value_ranges",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "multiplexed_signal_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dbc_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "multiplexer_indicator",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "multiplexor_switch_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dbc_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "multiplexor_value_range",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "unsigned_integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "multiplexor_value_ranges",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "multiplexor_value_range",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "new_symbols",
@@ -606,6 +888,11 @@
     }
   },
   {
+    "type": "object_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "offset",
     "named": true,
     "fields": {},
@@ -636,6 +923,21 @@
     }
   },
   {
+    "type": "repetitions",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "unsigned_integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "signal",
     "named": true,
     "fields": {},
@@ -645,10 +947,6 @@
       "types": [
         {
           "type": "byte_order",
-          "named": true
-        },
-        {
-          "type": "char_string",
           "named": true
         },
         {
@@ -688,6 +986,10 @@
           "named": true
         },
         {
+          "type": "unit",
+          "named": true
+        },
+        {
           "type": "value_type",
           "named": true
         }
@@ -695,7 +997,7 @@
     }
   },
   {
-    "type": "signal_extended_value_type",
+    "type": "signal_extended_value_type_list",
     "named": true,
     "fields": {},
     "children": {
@@ -704,6 +1006,10 @@
       "types": [
         {
           "type": "message_id",
+          "named": true
+        },
+        {
+          "type": "signal_extended_value_type",
           "named": true
         },
         {
@@ -714,7 +1020,22 @@
     }
   },
   {
-    "type": "signal_group",
+    "type": "signal_group_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dbc_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "signal_groups",
     "named": true,
     "fields": {},
     "children": {
@@ -722,19 +1043,19 @@
       "required": true,
       "types": [
         {
-          "type": "dbc_identifier",
-          "named": true
-        },
-        {
           "type": "message_id",
           "named": true
         },
         {
-          "type": "signal_name",
+          "type": "repetitions",
           "named": true
         },
         {
-          "type": "unsigned_integer",
+          "type": "signal_group_name",
+          "named": true
+        },
+        {
+          "type": "signal_name",
           "named": true
         }
       ]
@@ -783,7 +1104,23 @@
           "named": true
         },
         {
-          "type": "dbc_identifier",
+          "type": "default_value",
+          "named": true
+        },
+        {
+          "type": "factor",
+          "named": true
+        },
+        {
+          "type": "maximum",
+          "named": true
+        },
+        {
+          "type": "minimum",
+          "named": true
+        },
+        {
+          "type": "offset",
           "named": true
         },
         {
@@ -791,7 +1128,49 @@
           "named": true
         },
         {
+          "type": "signal_type_name",
+          "named": true
+        },
+        {
+          "type": "unit",
+          "named": true
+        },
+        {
+          "type": "value_table",
+          "named": true
+        },
+        {
           "type": "value_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "signal_type_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dbc_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "signal_types",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "signal_type",
           "named": true
         }
       ]
@@ -828,34 +1207,22 @@
     }
   },
   {
-    "type": "value_description",
+    "type": "unit",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "env_var_name",
-          "named": true
-        },
-        {
-          "type": "message_id",
-          "named": true
-        },
-        {
-          "type": "signal_name",
-          "named": true
-        },
-        {
-          "type": "value_description_pair",
+          "type": "char_string",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "value_description_pair",
+    "type": "value_description",
     "named": true,
     "fields": {},
     "children": {
@@ -874,7 +1241,7 @@
     }
   },
   {
-    "type": "value_range",
+    "type": "value_descriptions",
     "named": true,
     "fields": {},
     "children": {
@@ -882,14 +1249,18 @@
       "required": true,
       "types": [
         {
-          "type": "unsigned_integer",
+          "type": "value_descriptions_for_env_var",
+          "named": true
+        },
+        {
+          "type": "value_descriptions_for_signal",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "value_ranges",
+    "type": "value_descriptions_for_env_var",
     "named": true,
     "fields": {},
     "children": {
@@ -897,7 +1268,34 @@
       "required": true,
       "types": [
         {
-          "type": "value_range",
+          "type": "env_var_name",
+          "named": true
+        },
+        {
+          "type": "value_description",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value_descriptions_for_signal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "message_id",
+          "named": true
+        },
+        {
+          "type": "signal_name",
+          "named": true
+        },
+        {
+          "type": "value_description",
           "named": true
         }
       ]
@@ -916,7 +1314,41 @@
           "named": true
         },
         {
-          "type": "value_description_pair",
+          "type": "value_description",
+          "named": true
+        },
+        {
+          "type": "value_table_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value_table_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dbc_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value_tables",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "value_table",
           "named": true
         }
       ]
@@ -936,6 +1368,10 @@
         }
       ]
     }
+  },
+  {
+    "type": "\"",
+    "named": false
   },
   {
     "type": "(",
@@ -1039,6 +1475,38 @@
   },
   {
     "type": "CM_",
+    "named": false
+  },
+  {
+    "type": "DUMMY_NODE_VECTOR0",
+    "named": false
+  },
+  {
+    "type": "DUMMY_NODE_VECTOR1",
+    "named": false
+  },
+  {
+    "type": "DUMMY_NODE_VECTOR2",
+    "named": false
+  },
+  {
+    "type": "DUMMY_NODE_VECTOR3",
+    "named": false
+  },
+  {
+    "type": "DUMMY_NODE_VECTOR8000",
+    "named": false
+  },
+  {
+    "type": "DUMMY_NODE_VECTOR8001",
+    "named": false
+  },
+  {
+    "type": "DUMMY_NODE_VECTOR8002",
+    "named": false
+  },
+  {
+    "type": "DUMMY_NODE_VECTOR8003",
     "named": false
   },
   {
@@ -1150,10 +1618,6 @@
     "named": false
   },
   {
-    "type": "access_type",
-    "named": true
-  },
-  {
     "type": "byte_order",
     "named": true
   },
@@ -1171,6 +1635,10 @@
   },
   {
     "type": "env_var_type",
+    "named": true
+  },
+  {
+    "type": "signal_extended_value_type",
     "named": true
   },
   {
