@@ -14,10 +14,10 @@ The specification contains two ambiguities. Since DBCs have been in reliable use
 - Section 8.3, pg 7: Strictly speaking the specification only allows a single signal_extended_value_type_list item that sets only one signal type. I believe this is an oversight that has been a non-issue due to this feature being essentially deprecated. I've added an undocumented parse object to iterate through a series of SIG_VALTYPE_ declarations. This aligns with the rest of the top-level declarations and makes the parser more robust. If this can be confirmed to be in error please reach out to me or put in a PR to remove it.
 
 ## Bindings
--[x] C
--[x] Go
--[x] Node
--[x] Python
--[x] Rust
--[x] Swift
--[x] Zig
+- [x] C
+- [x] Go
+- [x] Node
+- [x] Python
+- [x] Rust
+- [x] Swift
+- [x] Zig
